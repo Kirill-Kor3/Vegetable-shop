@@ -6,7 +6,10 @@ import '@mantine/core/styles.css';
 import App from './App';
 
 createRoot(document.getElementById('root')!).render(
+  <StrictMode>
     <MantineProvider>
       <App />
     </MantineProvider>
+  </StrictMode>
 );
+
