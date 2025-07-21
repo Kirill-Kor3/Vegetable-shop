@@ -1,0 +1,14 @@
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  row-gap: 25px;
+}
+
+.add-button {
+  color: #3b944e;
+}
+
+.add-button:hover {
+  background-color: #e7faeb;
+  color: #3b944e;
+}
