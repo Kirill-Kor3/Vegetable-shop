@@ -7,8 +7,14 @@ import {
   ActionIcon,
 } from '@mantine/core';
 import { IconMinus, IconPlus } from '@tabler/icons-react';
+import type { Vegetable } from '../../App';
 
-export const ModalCard = ({ list, handleClick }) => {
+interface ModalCardProps {
+  list: Vegetable;
+  handleClick: (card: Vegetable, value: number) => void;
+}
+
+export const ModalCard: React.FC<ModalCardProps> = ({ list, handleClick }) => {
   const handleIncrement = () => handleClick(list, list.quantity + 1);
   const handleDecrement = () => handleClick(list, Math.max(1, list.quantity - 1));
 

@@ -1,10 +1,16 @@
+import type { Vegetable } from '../../App';
 import { Card, Image, Group, Text, ActionIcon, Button } from '@mantine/core';
 import { IconPlus, IconMinus } from '@tabler/icons-react';
 import { useCounter } from '@mantine/hooks';
 import icon from '../../assets/icon.svg';
 import './CardShop.css';
 
-export const CardShop = ({ handleClick, data }) => {
+interface CardShopProps {
+  data: Vegetable;
+  handleClick: (card: Vegetable, value: number) => void;
+}
+
+export const CardShop: React.FC<CardShopProps> = ({ handleClick, data }) => {
   const [value, { increment, decrement }] = useCounter(1, { min: 1 });
   return (
     <Card w={300} padding={16} radius="lg">

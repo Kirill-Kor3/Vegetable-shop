@@ -1,7 +1,15 @@
 import { ModalCard } from '../modalCard/ModalCard';
 import { Modal, Group, Text } from '@mantine/core';
+import type { Vegetable } from '../../App';
 
-export const ModalCart = ({ opened, close, list, handleClick }) => {
+interface ModalCartProps {
+  opened: boolean;
+  close: () => void;
+  list: Vegetable[];
+  handleClick: (card: Vegetable, value: number) => void;
+}
+
+export const ModalCart: React.FC<ModalCartProps> = ({ opened, close, list, handleClick }) => {
   const total = list.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (

@@ -17,15 +17,25 @@ import { ModalCart } from './modules/modalCart/ModalCart';
 import { CardShop } from './modules/CardShop/CardShop';
 import ky from 'ky';
 
+export interface Vegetable {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  category: string;
+  quantity: number;
+  currentPrice: number;
+}
+
 function App() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Vegetable[]>([]);
   const [opened, { open, close }] = useDisclosure(false);
-  const [list, setList] = useState([]);
+  const [list, setList] = useState<Vegetable[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const vegetablesFetch = async () => {
-      const vegetables = await ky
+      const vegetables: Vegetable[] = await ky
         .get(
           'https://res.cloudinary.com/sivadass/raw/upload/v1535817394/json/products.json'
         )
@@ -37,8 +47,8 @@ function App() {
     vegetablesFetch();
   }, []);
 
-  function handleClick(card, value) {
-    setList((prev) => {
+  function handleClick(card: Vegetable, value: number) {
+    setList((prev: Vegetable[]) => {
       const existingItemIndex = prev.findIndex((item) => item.id === card.id);
 
       if (existingItemIndex !== -1) {
