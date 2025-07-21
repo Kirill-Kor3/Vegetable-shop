@@ -5,4 +5,11 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   base: '/vegetable-shop/',
   plugins: [react()],
+  build: {
+    rollupOptions: {
+      input: {
+        main: 'src/main.tsx',
+      },
+    },
+  },
 });
