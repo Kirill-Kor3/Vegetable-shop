@@ -9,7 +9,7 @@ interface ModalCartProps {
   handleClick: (card: Vegetable, value: number) => void;
 }
 
-export const ModalCart: React.FC<ModalCartProps> = ({ opened, close, list, handleClick }) => {
+export const ModalCart: React.FC<ModalCartProps> = ({ opened, close, list }) => {
   const total = list.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
@@ -29,7 +29,7 @@ export const ModalCart: React.FC<ModalCartProps> = ({ opened, close, list, handl
       ) : (
         <>
           {list.map((el) => (
-            <ModalCard handleClick={handleClick} key={el.id} list={el} />
+            <ModalCard key={el.id} list={el} />
           ))}
           <Group mt="md" justify="space-between">
             <Text fw={600}>Total</Text>

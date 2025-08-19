@@ -1,17 +1,19 @@
-import type { Vegetable } from '../../App';
+import type { Vegetable } from '../../pages/VegetableList';
 import { Card, Image, Group, Text, ActionIcon, Button } from '@mantine/core';
 import { IconPlus, IconMinus } from '@tabler/icons-react';
 import { useCounter } from '@mantine/hooks';
 import icon from '../../assets/icon.svg';
 import './CardShop.css';
+import { useDispatch } from 'react-redux';
+import { addCart } from '../../store/reducers/VegetableSlice';
 
 interface CardShopProps {
   data: Vegetable;
-  handleClick: (card: Vegetable, value: number) => void;
 }
 
-export const CardShop: React.FC<CardShopProps> = ({ handleClick, data }) => {
+export const CardShop: React.FC<CardShopProps> = ({ data }) => {
   const [value, { increment, decrement }] = useCounter(1, { min: 1 });
+  const dispatch = useDispatch()
   return (
     <Card w={300} padding={16} radius="lg">
       <Card.Section pt={5}>
@@ -66,7 +68,7 @@ export const CardShop: React.FC<CardShopProps> = ({ handleClick, data }) => {
           color="#D6F0DC"
           radius="md"
           className="add-button"
-          onClick={() => handleClick(data, value)}
+          onClick={() => dispatch(addCart({data, value}))}
         >
           Add to cart
           <Image src={icon} alt="cart" pl={10} w={30} h={20} />

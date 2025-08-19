@@ -8,15 +8,15 @@ import {
 } from '@mantine/core';
 import { IconMinus, IconPlus } from '@tabler/icons-react';
 import type { Vegetable } from '../../App';
+import { useDispatch } from 'react-redux';
+import { decrementQuantity, incrementQuantity } from '../../store/reducers/VegetableSlice';
 
 interface ModalCardProps {
   list: Vegetable;
-  handleClick: (card: Vegetable, value: number) => void;
 }
 
-export const ModalCard: React.FC<ModalCardProps> = ({ list, handleClick }) => {
-  const handleIncrement = () => handleClick(list, list.quantity + 1);
-  const handleDecrement = () => handleClick(list, Math.max(1, list.quantity - 1));
+export const ModalCard: React.FC<ModalCardProps> = ({ list }) => {
+  const dispatch = useDispatch()
 
   return (
     <Card>
@@ -37,7 +37,7 @@ export const ModalCard: React.FC<ModalCardProps> = ({ list, handleClick }) => {
             color="#DEE2E6"
             size="md"
             radius="md"
-            onClick={handleDecrement}
+            onClick={() => dispatch(decrementQuantity(list))}
           >
             <IconMinus color="black" />
           </ActionIcon>
@@ -54,7 +54,7 @@ export const ModalCard: React.FC<ModalCardProps> = ({ list, handleClick }) => {
             size="md"
             color="#DEE2E6"
             radius="md"
-            onClick={handleIncrement}
+            onClick={() => dispatch(incrementQuantity(list))}
           >
             <IconPlus color="black" />
           </ActionIcon>
